@@ -108,11 +108,30 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-    z-index: 2000; /* 確保按鈕最前方 */
+    z-index: 2000;
     display: flex;
     justify-content: center;
     align-items: center;
     backdrop-filter: blur(8px);
+    
+    /* 新增：平滑過渡效果 */
+    transition: transform 0.1s ease, filter 0.1s ease, background 0.2s ease;
+    /* 新增：移除點擊藍框 */
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 懸停效果：稍微增加亮度或背景飽和度 */
+.btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+}
+
+/* 點擊效果：縮小 0.9 倍並變暗 */
+.btn:active {
+    /* 必須保留 translateY(-50%)，否則垂直位置會跑掉 */
+    transform: translateY(-50%) scale(0.9);
+    /* 變暗回饋 */
+    filter: brightness(0.6);
 }
 
 /* 調整按鈕到 crop-layer 的兩側 */
@@ -123,4 +142,5 @@
     .crop-layer { width: 100%; }
     .prev { left: 10px; }
     .next { right: 10px; }
+
 }
